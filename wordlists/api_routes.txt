@@ -1,0 +1,11 @@
+api/v1
+api/v2
+api/health
+api/users
+api/login
+api/auth
+api/token
+api/docs
+api/swagger
+graphql
+.well-known/openapi.json

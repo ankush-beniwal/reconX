@@ -1,0 +1,96 @@
+# =========================================================
+# ReconX Configuration Template
+# Copy to config.yaml and fill in your keys / adjust paths.
+# =========================================================
+
+general:
+  project_name: "reconx"
+  output_dir: "./data/results"
+  db_path: "./data/reconx.db"
+  scope_file: "./scope/example_scope.txt"
+  concurrency: 25            # global max concurrent subprocess tasks
+  rate_limit_rps: 15         # requests/sec ceiling applied to httpx/naabu/ffuf/nuclei
+  timeout_seconds: 600       # hard timeout per tool invocation
+  resume: true               # skip already-completed phases/targets on rerun
+  diff_mode: false           # only report NEW assets since last run
+  log_level: "INFO"          # DEBUG | INFO | WARNING | ERROR
+
+tool_paths:
+  subfinder: "subfinder"
+  assetfinder: "assetfinder"
+  amass: "amass"
+  findomain: "findomain"
+  alterx: "alterx"
+  dnsgen: "dnsgen"
+  puredns: "puredns"
+  massdns: "massdns"
+  subzy: "subzy"
+  naabu: "naabu"
+  masscan: "masscan"
+  httpx: "httpx"
+  katana: "katana"
+  gau: "gau"
+  waybackurls: "waybackurls"
+  arjun: "arjun"
+  x8: "x8"
+  ffuf: "ffuf"
+  feroxbuster: "feroxbuster"
+  nuclei: "nuclei"
+
+resolvers:
+  trusted_resolvers_file: "./wordlists/resolvers.txt"
+
+wordlists:
+  subdomain_permutations: "./wordlists/dns_permutations.txt"
+  content_common: "./wordlists/common.txt"
+  content_php: "./wordlists/php.txt"
+  content_api: "./wordlists/api_routes.txt"
+  content_backup_ext:
+    - ".bak"
+    - ".old"
+    - ".zip"
+    - ".tar.gz"
+    - ".sql"
+    - ".env"
+    - ".git/config"
+    - ".DS_Store"
+
+api_keys:
+  # Passive-source API keys (leave blank to skip a source)
+  chaos: ""
+  shodan: ""
+  censys_id: ""
+  censys_secret: ""
+  virustotal: ""
+  securitytrails: ""
+  github_token: ""          # used for JS/secret-hunting rate-limit bypass
+
+ports:
+  top: "1000"                # "100" | "1000" | "full"
+
+nuclei:
+  tags:
+    - cves
+    - exposures
+    - misconfiguration
+    - default-logins
+  severity:
+    - critical
+    - high
+  rate_limit: 150
+  bulk_size: 25
+
+notifications:
+  discord_webhook: ""
+  slack_webhook: ""
+  notify_on:
+    - new_subdomain
+    - subdomain_takeover
+    - critical_vuln
+    - new_endpoint_secret
+
+reporting:
+  formats:
+    - json
+    - markdown
+    - html

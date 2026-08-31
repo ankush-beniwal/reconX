@@ -1,0 +1,10 @@
+index.php
+admin.php
+login.php
+config.php
+wp-login.php
+wp-config.php.bak
+phpinfo.php
+info.php
+test.php
+upload.php

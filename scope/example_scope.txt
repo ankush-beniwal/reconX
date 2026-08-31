@@ -1,0 +1,10 @@
+# In-scope patterns (one per line). Supports:
+#   exact domain:      example.com
+#   wildcard subdomain: *.example.com
+#   CIDR:               10.0.0.0/24
+# Lines prefixed with "!" are explicit EXCLUSIONS (out-of-scope), checked first.
+
+*.example.com
+example.com
+!blog.example.com
+!oldstaging.example.com
